@@ -17,11 +17,30 @@
 }
 
 body {
+  background: linear-gradient(180deg, rgba(223, 253, 255, 0.58) 9.38%, rgba(92, 94, 94, 0.97) 58.85%);
   color: rgb(var(--foreground-rgb));
+  /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+    /* font-family: Inter; */
+    /* font-family: 'Jost', sans-serif; */
+
 }
+
+
+
+
+/* FOOTER */
+@media (max-width: 1000px) {
+  .footer-center ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
