@@ -21,18 +21,18 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-[#444646]">
+    <nav className="bg-[#444646] ">
       <div className="container mx-auto py-4">
         <div className="flex justify-between">
           <div className="flex items-center">
             <a className="flex items-center text-white" href="/">
-              <Image src="/logo.png" alt="Bootstrap" className="h-9 w-9 ml-3" width={100}   height={50}/>
+              <Image src="/logo.png" alt="Bootstrap" className="h-[50px] w-[50px] ml-3" width={100}   height={50}/>
             </a>
           </div>
 
           {isScreenWidthLessThan600px ? (
             <svg
-              className="block h-6 w-6 m-4 cursor-pointer"
+              className="block h-9 w-9 m-4 cursor-pointer border-2 border-white rounded-full p-1"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
@@ -63,12 +63,23 @@ const Navbar = () => {
                   PROGRAMS
                 </Link>
               </li>
+               <li className="mx-2">
+                <Link className="text-white hover:text-gray-300" href="/api/auth/logout">
+                  LOGOUT
+                </Link>
+              </li>
+              <li className="mx-2 border-2 border-white rounded-full px-3 py-1">
+                <Link className="text-white hover:text-gray-300 " href="/api/auth/login">
+                  JOIN NOW
+                </Link>
+              </li>
+             
             </ul>
           )}
 
           <div
             className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${
-              !isNavbarMenuOpen ? '-translate-y-[100vh]' : 'translate-y-0 bg-[#444646]  '
+              !isNavbarMenuOpen ? '-translate-y-[100vh]' : 'translate-y-0 bg-[#444646]  extention'
             } transition-all duration-700`}
           >
             <ul className="flex justify-end px-4 my-3 font-bold">
@@ -87,6 +98,12 @@ const Navbar = () => {
                   PROGRAMS
                 </Link>
               </li>
+              <li className="mx-2">
+                <Link className="text-white hover:text-gray-300" href="/api/auth/login">
+                  LOGIN
+                </Link>
+              </li>
+              
             </ul>
           </div>
         </div>

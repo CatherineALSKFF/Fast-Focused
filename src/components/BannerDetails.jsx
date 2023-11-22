@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const BannerDetails = () => {
   return (
-    <div className="text-center my-3 py-4 px-5 description-section ">
+    <div className="text-center my-3 py-4 px-5 description-section mt-[700px] ">
       <Link href='/programs'>
   <button type="button" href='/programs' className="btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold py-2 px-4 rounded-[30px] px-10 ">
     JOIN NOW

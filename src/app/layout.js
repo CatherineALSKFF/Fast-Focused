@@ -3,14 +3,16 @@ import { useRouter } from 'next/navigation';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './globals.css';
-
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 
 export default function Layout({ children }) {
   const router = useRouter();
 
+  
   return (
     <html lang="en">
+      <UserProvider>
       <body>
         <Navbar />
         {children}
@@ -19,6 +21,7 @@ export default function Layout({ children }) {
 
 
       </body>
+      </UserProvider>
     </html>
   );
 }
