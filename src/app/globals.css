@@ -18,7 +18,9 @@
 
 
 body {
-  /* background: linear-gradient(180deg, rgba(223, 253, 255, 0.58) 9.38%, rgba(92, 94, 94, 0.97) 58.85%); */
+  background: linear-gradient(180deg, rgba(223, 253, 255, 0.58) 9.38%, rgba(92, 94, 94, 0.97) 58.85%);
+
+
 
   color: rgb(var(--foreground-rgb));
  
@@ -67,10 +69,10 @@ body {
 
 
 
-
+/* 
 nav, footer{
   background: linear-gradient(90deg, #FFFFFF00 4.22%, #C8EED334 22.27%, #B3F0C465 39.49%, #C2FFD3 93.33%);
 
-}
+} */
 .extention{
 background: linear-gradient(90deg, #444646 9.81%, #C2FFD3 97.41%);}

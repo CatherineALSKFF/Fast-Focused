@@ -2,7 +2,7 @@ import React from 'react'
 
 const ContactForm = () => {
   return (
-    <form className="flex flex-col justify-center items-center text-[#444646]">
+    <form className="flex flex-col justify-center items-center text-[#444646] rounded-[30px] border-2 border-[#C2FFD3] p-6">
   <input
     type="text"
     name="name"

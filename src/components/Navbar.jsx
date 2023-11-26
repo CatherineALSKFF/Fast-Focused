@@ -68,6 +68,11 @@ const Navbar = () => {
                   LOGOUT
                 </Link>
               </li>
+              <li className="mx-2">
+                <Link className="text-white hover:text-gray-300" href="">
+                  MY ACCOUNT
+                </Link>
+              </li>
               <li className="mx-2 border-2 border-white rounded-full px-3 py-1">
                 <Link className="text-white hover:text-gray-300 " href="/api/auth/login">
                   JOIN NOW
@@ -79,7 +84,7 @@ const Navbar = () => {
 
           <div
             className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${
-              !isNavbarMenuOpen ? '-translate-y-[100vh]' : 'translate-y-0 bg-[#444646]  extention'
+              !isNavbarMenuOpen ? '-translate-y-[100vh]' : 'translate-y-0 bg-[#444646]  '
             } transition-all duration-700`}
           >
             <ul className="flex justify-end px-4 my-3 font-bold">
@@ -98,11 +103,12 @@ const Navbar = () => {
                   PROGRAMS
                 </Link>
               </li>
-              <li className="mx-2">
-                <Link className="text-white hover:text-gray-300" href="/api/auth/login">
-                  LOGIN
+              <li className="mx-2 border-2 border-white rounded-full px-3 py-1">
+                <Link className="text-white hover:text-gray-300 " href="/api/auth/login">
+                  JOIN NOW
                 </Link>
               </li>
+
               
             </ul>
           </div>
