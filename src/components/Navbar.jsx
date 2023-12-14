@@ -1,11 +1,18 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import axios from 'axios'
+
+
+import { useUser } from '@auth0/nextjs-auth0/client';
             
 
 const Navbar = () => {
   const [isNavbarMenuOpen, setIsNavbarMenuOpen] = useState(false);
   const [isScreenWidthLessThan600px, setIsScreenWidthLessThan600px] = useState(false);
+
+ 
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,6 +26,63 @@ const Navbar = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+ const { user, error, isLoading } = useUser();
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+
+
+// ADDED CODE
+
+// const handleBillingPortalRedirect = async () => {
+//   try {
+//     const response = await fetch('api/create-customer-portal-session', {
+//       method: 'POST',
+//     });
+
+//     if (response.status === 303) {
+//       // Redirect the user to the billing portal URL
+//       window.location.href = response.url;
+//     } else {
+//       console.error('Error creating billing portal session:', response.statusText);
+//       // Handle the error as needed
+//     }
+//   } catch (error) {
+//     console.error('An unexpected error occurred:', error.message);
+//     // Handle the error as needed
+//   }
+// };
+
+
+  // POST request 
+  const handleBillingPortalRedirect = async () => {
+    
+    try {
+      const { data } = await axios.post('api/create-customer-portal-session');
+      // Check if the response contains the expected data
+      if (data && data.url) {
+        // Redirect the user to the billing portal URL
+        window.location.href = data.url;
+      } else {
+        console.error('Unexpected response format:', data);
+        // Handle unexpected response format
+      }
+    } catch (error) {
+      console.error('Error handling subscription:', error);
+      // Handle error as needed
+    }
+  };
+  
+  
+  
+
+
+
+
+
+
+
+
+
 
   return (
     <nav className="bg-[#444646] ">
@@ -62,22 +126,41 @@ const Navbar = () => {
                 <Link className="text-white hover:text-gray-300" href="/programs">
                   PROGRAMS
                 </Link>
-              </li>
-               <li className="mx-2">
-                <Link className="text-white hover:text-gray-300" href="/api/auth/logout">
-                  LOGOUT
-                </Link>
-              </li>
-              <li className="mx-2">
-                <Link className="text-white hover:text-gray-300" href="">
-                  MY ACCOUNT
-                </Link>
-              </li>
-              <li className="mx-2 border-2 border-white rounded-full px-3 py-1">
-                <Link className="text-white hover:text-gray-300 " href="/api/auth/login">
-                  JOIN NOW
-                </Link>
-              </li>
+                </li>
+             {user || user?.email?(
+              <>
+                  {/* <li className="mx-2">
+                    <Link className="text-white hover:text-gray-300" href="/myaccount">
+                      MY ACCOUNT
+                    </Link>
+                  </li> */}
+                    <form
+                      method="POST"
+                      action="/create-customer-portal-session"
+                      onSubmit={(e) => {
+                        e.preventDefault(); // Prevent the default form submission behavior
+                        handleBillingPortalRedirect();
+                      }}
+                    >
+                      <button type="submit">Manage billing</button>
+                    </form>
+
+
+
+
+
+                    <li className="mx-2">
+                      <Link className="text-white hover:text-gray-300" href="/api/auth/logout">
+                    LOGOUT
+                  </Link>
+                </li></>
+)
+:
+               ( <li className="mx-2 border-2 border-white rounded-full px-3 py-1">
+                  <Link className="text-white hover:text-gray-300 " href="/api/auth/login">
+                    JOIN NOW
+                  </Link>
+                </li>)}
              
             </ul>
           )}

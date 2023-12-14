@@ -1,11 +1,21 @@
+'use client';
+
+import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link'
 import React from 'react'
 import axios from 'axios'
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
 
+
 const ProgListings = ({ price }) => {
 
+  const { user, error, isLoading } = useUser();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+
+  
 
   const DynamicDescription = (price) => {
 
@@ -32,17 +42,47 @@ const ProgListings = ({ price }) => {
   // POST request 
 const handleSubscription = async (e) => {
   e.preventDefault();
-  const { data } = await axios.post('/api/payment',
-  {
-    priceId: price.id
-  },
-  {
-    headers: {
-      "Content-Type": "application/json",
-    },
+
+  if (!user || !user.email) {
+    // Redirect to /api/auth/login if email is not present
+    window.location.assign('/api/auth/login');
+    return;
   }
-  );
-  window.location.assign(data)
+
+  try {
+    const { data } = await axios.post(
+      '/api/payment',
+      {
+        priceId: price.id,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    // Proceed with the existing code
+    window.location.assign(data);
+  } catch (error) {
+    console.error('Error handling subscription:', error);
+    // Handle error as needed
+  }
+
+
+
+  // e.preventDefault();
+  // const { data } = await axios.post('/api/payment',
+  // {
+  //   priceId: price.id
+  // },
+  // {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // }
+  // );
+  // window.location.assign(data)
 }
 
 
