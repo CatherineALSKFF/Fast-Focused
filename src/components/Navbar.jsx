@@ -57,7 +57,13 @@ const Navbar = () => {
   const handleBillingPortalRedirect = async () => {
     
     try {
-      const { data } = await axios.post('api/create-customer-portal-session');
+      const { data } = await axios.post('api/create-customer-portal-session',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          
+        },
+      });
       // Check if the response contains the expected data
       if (data && data.url) {
         // Redirect the user to the billing portal URL

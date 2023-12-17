@@ -2,11 +2,15 @@ import Stripe from "stripe";
 import { NextResponse, NextRequest } from "next/server";
 import { getSession } from '@auth0/nextjs-auth0';
 
+
 export async function POST(request) {
     const { user } = await getSession(request);
     const userEmail = user ? user.email : null;
 
+
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+   
 
     // Check if a customer with the email already exists
     const existingCustomers = await stripe.customers.list({
@@ -33,8 +37,13 @@ export async function POST(request) {
     });
 
     // Redirect the user to the billing portal URL
-    return NextResponse.redirect(session.url, { status: 303 });
-    
+    // return NextResponse.redirect(session.url, { status: 303 });
+    return new Response(JSON.stringify({ url: session.url }), {
+        status: 200,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
   
 }
 
