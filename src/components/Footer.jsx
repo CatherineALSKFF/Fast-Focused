@@ -6,21 +6,22 @@ const Footer = () => {
   return (
     <footer className="bg-[#444646] text-white">
       <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-row justify-between py-6">
-          <div className="flex flex-col items-center w-1/3">
+        <div className="flex flex-col md:flex-row justify-between py-6">
+          <div className="flex flex-col items-center mb-4 md:mb-0 md:w-1/3 mt-4">
             <Image src="/logo.png" className="footer-logo h-16 w-16" alt="" width={100}
               height={50} />
           </div>
 
-          <div className="flex flex-col items-center w-1/3">
-            <ul className="flex flex-row justify-center gap-4">
-              <li><Link href="#">TERMS & CONDITIONS</Link></li>
-              <li><Link href="#">CONTACT</Link></li>
-              <li><Link href="#">PRIVACY POLICY</Link></li>
+          <div className="flex flex-col items-center mb-4 md:mb-0 md:w-1/3 mt-4">
+            <ul className="flex flex-col items-center md:flex-row justify-center gap-4">
+              <li className="text-center"><Link href="/termsandconditions">TERMS & CONDITIONS</Link></li>
+              <li className="text-center"><Link href="/contact">CONTACT</Link></li>
+              <li className="text-center"><Link href="/privacypolicy">PRIVACY POLICY</Link></li>
             </ul>
           </div>
 
-          <div className="flex flex-col items-center w-1/3">
+
+          <div className="flex flex-col items-center md:w-1/3 mt-4">
             <div className="flex flex-row justify-center gap-4">
               {/* gmail  */}
               <svg
@@ -56,7 +57,8 @@ const Footer = () => {
                 viewBox="0 0 24 24">
                 <path
                   d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-              </svg>            </div>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -65,3 +67,24 @@ const Footer = () => {
 }
 
 export default Footer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

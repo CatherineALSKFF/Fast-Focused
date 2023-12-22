@@ -16,6 +16,7 @@ export default function Home() {
     </div>
 
     <BannerVideo/>
+
     <BannerDetails/>
     <BannerDescription/>
 

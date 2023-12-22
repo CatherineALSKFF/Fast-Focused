@@ -1,7 +1,7 @@
 'use client'
 import axios from "axios"
 import { useState, useEffect } from "react"
-import ProBanner from "@/components/ProBanner"
+import Banner from "@/components/Banner"
 import ProgDescription from "@/components/ProgDescription"
 import ProgListings from "@/components/ProgListings"
 
@@ -21,7 +21,7 @@ export default function Programs() {
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ProBanner />
+      <Banner />
 
       {/* <ProgListings /> */}
       <div className="container my-4 programs-container flex justify-center items-center flex-wrap gap-5px">

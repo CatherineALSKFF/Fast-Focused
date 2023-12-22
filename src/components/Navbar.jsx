@@ -16,7 +16,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsScreenWidthLessThan600px(window.innerWidth < 600);
+      const screenWidth = window.innerWidth;
+      setIsScreenWidthLessThan600px(screenWidth < 600);
+
+      // Close the navbar menu when screen width is greater than 600px
+      if (screenWidth >= 600 && isNavbarMenuOpen) {
+        setIsNavbarMenuOpen(false);
+      }
     };
 
     window.addEventListener('resize', handleResize);
@@ -25,32 +31,16 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [isNavbarMenuOpen]);
+
+
+
  const { user, error, isLoading } = useUser();
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
 
-// ADDED CODE
 
-// const handleBillingPortalRedirect = async () => {
-//   try {
-//     const response = await fetch('api/create-customer-portal-session', {
-//       method: 'POST',
-//     });
-
-//     if (response.status === 303) {
-//       // Redirect the user to the billing portal URL
-//       window.location.href = response.url;
-//     } else {
-//       console.error('Error creating billing portal session:', response.statusText);
-//       // Handle the error as needed
-//     }
-//   } catch (error) {
-//     console.error('An unexpected error occurred:', error.message);
-//     // Handle the error as needed
-//   }
-// };
 
 
   // POST request 
@@ -117,7 +107,7 @@ const Navbar = () => {
               />
             </svg>
           ) : (
-            <ul className="flex justify-end px-4 my-3 font-bold">
+            <ul className="flex justify-end px-4 my-3 font-bold gap-3">
               <li className="mx-2">
                 <Link className="text-white hover:text-gray-300" href="/about">
                   ABOUT
@@ -135,11 +125,6 @@ const Navbar = () => {
                 </li>
              {user || user?.email?(
               <>
-                  {/* <li className="mx-2">
-                    <Link className="text-white hover:text-gray-300" href="/myaccount">
-                      MY ACCOUNT
-                    </Link>
-                  </li> */}
                     <form
                       method="POST"
                       action="/create-customer-portal-session"
@@ -148,11 +133,8 @@ const Navbar = () => {
                         handleBillingPortalRedirect();
                       }}
                     >
-                      <button type="submit">Manage billing</button>
+                      <button type="submit">MANAGE</button>
                     </form>
-
-
-
 
 
                     <li className="mx-2">
@@ -162,8 +144,8 @@ const Navbar = () => {
                 </li></>
 )
 :
-               ( <li className="mx-2 border-2 border-white rounded-full px-3 py-1">
-                  <Link className="text-white hover:text-gray-300 " href="/api/auth/login">
+               ( <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
+                  <Link className=" hover:text-gray-300  " href="/api/auth/login">
                     JOIN NOW
                   </Link>
                 </li>)}
@@ -172,7 +154,7 @@ const Navbar = () => {
           )}
 
           <div
-            className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${
+            className={`absolute top-[80px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 gap-3 ${
               !isNavbarMenuOpen ? '-translate-y-[100vh]' : 'translate-y-0 bg-[#444646]  '
             } transition-all duration-700`}
           >
@@ -192,11 +174,32 @@ const Navbar = () => {
                   PROGRAMS
                 </Link>
               </li>
-              <li className="mx-2 border-2 border-white rounded-full px-3 py-1">
-                <Link className="text-white hover:text-gray-300 " href="/api/auth/login">
-                  JOIN NOW
-                </Link>
-              </li>
+              {user || user?.email?(
+              <>
+                    <form
+                      method="POST"
+                      action="/create-customer-portal-session"
+                      onSubmit={(e) => {
+                        e.preventDefault(); // Prevent the default form submission behavior
+                        handleBillingPortalRedirect();
+                      }}
+                    >
+                      <button type="submit">MANAGE</button>
+                    </form>
+
+
+                    <li className="mx-2">
+                      <Link className="text-white hover:text-gray-300" href="/api/auth/logout">
+                    LOGOUT
+                  </Link>
+                </li></>
+)
+:
+               ( <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
+                  <Link className=" hover:text-gray-300  " href="/api/auth/login">
+                    JOIN NOW
+                  </Link>
+                </li>)}
 
               
             </ul>

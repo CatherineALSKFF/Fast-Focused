@@ -39,6 +39,18 @@ const ProgListings = ({ price }) => {
   }
 
 
+
+
+  const DynamicColorClass = (price) => {
+
+    if (price.nickname === "Standard") {
+        return "standard-prog"
+      } else {
+        return "comprehensive-prog"
+      }
+    }
+
+
   // POST request 
 const handleSubscription = async (e) => {
   e.preventDefault();
@@ -69,26 +81,13 @@ const handleSubscription = async (e) => {
     // Handle error as needed
   }
 
-
-
-  // e.preventDefault();
-  // const { data } = await axios.post('/api/payment',
-  // {
-  //   priceId: price.id
-  // },
-  // {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // }
-  // );
-  // window.location.assign(data)
 }
 
 
   return (
 
-    <div className="w-full md:w-1/2  mt-3 mx-3 text-center flex flex-col justify-center items-center py-4 px-4 text-[20px]  max-w-[400px]  border-[#C2FFD3] rounded-[30px] h-[400px] shadow-lg bg-[#2A2A2B]  ">
+    <div className={`w-full md:w-1/2 mt-3 mx-3 text-center flex flex-col justify-center items-center py-4 px-4 text-[20px] max-w-[400px] border-[#C2FFD3] rounded-[30px] h-[400px] shadow-lg bg-[#2A2A2B] ${DynamicColorClass(price)}`}>
+      
       <h1 className="text-center text-white font-extrabold mb-3 text-[35px]">{price.nickname}</h1>
       {/* <p className='text-white text-center '> </p> */}
       {DynamicDescription(price)}
