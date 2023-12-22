@@ -43,7 +43,7 @@ const BannerDescription = () => {
         <img
           src={imageSrc}
           alt="Transformation"
-          className="w-[350px] max-w-full p-3 transition-all duration-500" // Added transition for smooth image change
+          className=" rounded-[20px] w-[350px] max-w-full p-3 transition-all duration-500" // Added transition for smooth image change
         />
       </div>
 
