@@ -17,7 +17,7 @@ const BannerDetails = () => {
 
       // Adjust font size only until the element's middle reaches the middle of the viewport
       if (elementMiddle > viewportHeight / 2) {
-        const maxFontSize = 180;
+        const maxFontSize = 100;
         const minFontSize = 40;
         // Normalize scroll position between 0 and 1
         const scrollFactor = Math.min(1, (viewportHeight / 2 - elementPosition) / (viewportHeight / 2));
