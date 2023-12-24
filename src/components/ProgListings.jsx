@@ -18,6 +18,7 @@ const ProgListings = ({ price }) => {
   
 
   const DynamicDescription = (price) => {
+    console.log(price.nickname)
 
   if (price.nickname === "Standard") {
       return <div className="text-[#B7B7B7] font-bold text-center font-semibold ">

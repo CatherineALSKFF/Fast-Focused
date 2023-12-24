@@ -12,13 +12,6 @@ export async function POST(request) {
     let priceId = data.priceId
 
 
-    // const customer = await stripe.customers.create({
-    //     email: userEmail,
-    //     description: 'Customer for subscription',
-    // });
-
-
-
     // Check if a customer with the email already exists
     const existingCustomers = await stripe.customers.list({
         email: userEmail,
@@ -57,7 +50,7 @@ export async function POST(request) {
             }
         ],
       mode: 'subscription',
-      success_url: `http://localhost:3000/myaccount`, // Include session ID in the success URL
+      success_url: `http://localhost:3000`, // Include session ID in the success URL
       cancel_url: 'http://localhost:3000',
       customer_email: userEmail, 
     })

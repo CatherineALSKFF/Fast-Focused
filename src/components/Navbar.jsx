@@ -133,7 +133,7 @@ const Navbar = () => {
                         handleBillingPortalRedirect();
                       }}
                     >
-                      <button type="submit">MANAGE</button>
+                      <button type="submit">MY ACCOUNT</button>
                     </form>
 
 
