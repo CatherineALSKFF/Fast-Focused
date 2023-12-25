@@ -27,7 +27,7 @@ const AboutImage = () => {
       <img
         src="/fillout.jpeg"
         alt="Fillout"
-        className={`w-[800px] h-[250px] max-w-full p-3 ${isVisible ? 'visible' : 'fadeInOnScroll'}`}
+        className={`w-[800px] rounded-[30px] h-[250px] max-w-full p-3 ${isVisible ? 'visible' : 'fadeInOnScroll'}`}
       />
     </div>
   );

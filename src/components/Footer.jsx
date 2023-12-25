@@ -70,6 +70,15 @@ const Footer = () => {
             </div>
           </div>
         </div>
+         {/* New section for the "powered by" line */}
+         <div className="text-center mt-4">
+          <p className="text-sm">
+            Website powered by 
+            <Link href="https://catherinaalskaff.com/" passHref  className="text-[#C2FFD3] hover:underline ml-1" target="_blank" rel="noopener noreferrer">
+              Catherina Al Skaff
+            </Link>
+          </p>
+        </div>
       </div>
     </footer>
   )
