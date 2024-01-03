@@ -11,7 +11,7 @@ const ProgListings = ({ price }) => {
   if (error) return <div>{error.message}</div>;
 
   const DynamicDescription = (price) => {
-    console.log(price.nickname);
+    // console.log(price.nickname);
 
     if (price.nickname === "Standard") {
       return (
@@ -38,19 +38,53 @@ const ProgListings = ({ price }) => {
     return price.nickname === "Standard" ? "standard-prog" : "comprehensive-prog";
   };
 
+  // const handleSubscription = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!user || !user.email) {
+  //     window.location.assign('/api/auth/login');
+  //     return;
+  //   }
+
+  //   try {
+  //     const { data } = await axios.post('/api/payment', { priceId: price.id }, { headers: { 'Content-Type': 'application/json' } });
+  //     window.location.assign(data);
+  //   } catch (error) {
+  //     console.error('Error handling subscription:', error);
+  //   }
+  // };
+
+
   const handleSubscription = async (e) => {
     e.preventDefault();
-
-    if (!user || !user.email) {
+  
+    // Check if user is logged in and has an email
+    if (user && user.email) {
+      // Trigger the TikTok Pixel event for InitiateCheckout
+      if (window.ttq) {
+        window.ttq.track('InitiateCheckout', {
+          contents: [
+            {
+              content_id: price.id, // Use the price ID as content identifier
+              content_type: 'subscription', // Adjust as needed
+              content_name: price.nickname, // Program name
+              price: price.unit_amount / 100 // Convert to actual amount
+            }
+          ],
+          value: price.unit_amount / 100, // Convert to actual amount
+          currency: 'USD' // Assuming USD, adjust as needed
+        });
+      }
+  
+      try {
+        const { data } = await axios.post('/api/payment', { priceId: price.id }, { headers: { 'Content-Type': 'application/json' } });
+        window.location.assign(data);
+      } catch (error) {
+        console.error('Error handling subscription:', error);
+      }
+    } else {
+      // Redirect to login if user is not logged in or doesn't have an email
       window.location.assign('/api/auth/login');
-      return;
-    }
-
-    try {
-      const { data } = await axios.post('/api/payment', { priceId: price.id }, { headers: { 'Content-Type': 'application/json' } });
-      window.location.assign(data);
-    } catch (error) {
-      console.error('Error handling subscription:', error);
     }
   };
 

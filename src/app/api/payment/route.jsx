@@ -23,14 +23,14 @@ export async function POST(request) {
     if (existingCustomers.data.length > 0) {
         // Customer already exists
         customer = existingCustomers.data[0];
-        console.log('Customer already exists:', customer.id);
+        // console.log('Customer already exists:', customer.id);
     } else {
         // Create a new customer if not found
         customer = await stripe.customers.create({
             email: userEmail,
             description: 'Customer for subscription',
         });
-        console.log('New customer created:', customer.id);
+        // console.log('New customer created:', customer.id);
     }
 
 

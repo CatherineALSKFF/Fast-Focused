@@ -67,9 +67,52 @@ const Navbar = () => {
       // Handle error as needed
     }
   };
+
+
+
+
+
   
+
+
+
+  // LOGIN BTN
+  const handleJoinNowClick = () => {
+    if (window.ttq) {
+      window.ttq.track('ClickButton', {
+        contents: [{
+          content_id: "join_now",
+          content_type: "button",
+          content_name: "Join Now"
+        }],
+        value: 0, // or relevant value
+        currency: "USD" // or relevant currency
+      });
+    }
+  console.log(user)
+    // Redirect to login page logic here (if not using Link component)
+  };
+
+
+
   
+  const handleLearnMoreClick = () => {
+    if (window.ttq) {
+      window.ttq.track('ClickButton', {
+        contents: [{
+          content_id: "learn_more",
+          content_type: "button",
+          content_name: "Learn More"
+        }],
+        value: 0, // or relevant value
+        currency: "USD" // or relevant currency
+      });
+    }
   
+    // Redirect to programs page logic here (if not using Link component)
+  };
+
+
 
 
 
@@ -119,7 +162,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="mx-2">
-                <Link className="text-white hover:text-gray-300" href="/programs">
+                <Link className="text-white hover:text-gray-300" href="/programs"   onClick={handleLearnMoreClick}>
                   PROGRAMS
                 </Link>
                 </li>
@@ -145,7 +188,7 @@ const Navbar = () => {
 )
 :
                ( <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
-                  <Link className=" hover:text-gray-300  " href="/api/auth/login">
+                  <Link className=" hover:text-gray-300  " href="/api/auth/login" onClick={handleJoinNowClick}>
                     JOIN NOW
                   </Link>
                 </li>)}
@@ -170,7 +213,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="mx-2">
-                <Link className="text-white hover:text-gray-300" href="/programs">
+                <Link className="text-white hover:text-gray-300" href="/programs"   onClick={handleLearnMoreClick}>
                   PROGRAMS
                 </Link>
               </li>
@@ -196,7 +239,7 @@ const Navbar = () => {
 )
 :
                ( <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
-                  <Link className=" hover:text-gray-300  " href="/api/auth/login">
+                  <Link className=" hover:text-gray-300  " href="/api/auth/login" onClick={handleJoinNowClick}>
                     JOIN NOW
                   </Link>
                 </li>)}

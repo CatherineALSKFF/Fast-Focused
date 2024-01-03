@@ -17,7 +17,7 @@ export default function Programs() {
   const fetchPrices = async () => {
     const { data } = await axios.get('/api/getprograms')
     setPrices(data)
-    console.log(data)
+    // console.log(data)
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
