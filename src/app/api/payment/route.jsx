@@ -35,10 +35,6 @@ export async function POST(request) {
 
 
     
-
-
-
-
     
     
 
@@ -50,7 +46,7 @@ export async function POST(request) {
             }
         ],
       mode: 'subscription',
-      success_url: `http://localhost:3000`, // Include session ID in the success URL
+      success_url: `http://localhost:3000/success`, // Include session ID in the success URL
       cancel_url: 'http://localhost:3000',
       customer_email: userEmail, 
     })

@@ -4,14 +4,14 @@ import React, { useState, useEffect } from 'react';
 const BannerDescription = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [imageSrc, setImageSrc] = useState('/before-pic.jpeg');
+  const [textContent, setTextContent] = useState(["NO MORE", "“BULKING AND CUTTING”"]);
+  const [textAnimation, setTextAnimation] = useState('');
 
   const checkScroll = () => {
     const element = document.querySelector('.banner-description');
-    // Check if the element exists before trying to access its properties
     if (element) {
       const elementPosition = element.getBoundingClientRect().top;
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  
       const visible = elementPosition < viewportHeight / 2;
       setIsVisible(visible);
     }
@@ -19,39 +19,44 @@ const BannerDescription = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', checkScroll);
-    checkScroll(); // Call on initial render
+    checkScroll();
     return () => {
       window.removeEventListener('scroll', checkScroll);
     };
   }, []);
 
   useEffect(() => {
-    let timeout;
+    let imageTimeout, textTimeout;
     if (isVisible) {
-      // Set a timeout to change the image after 2 seconds
-      timeout = setTimeout(() => {
+      imageTimeout = setTimeout(() => {
         setImageSrc('/after-pic.JPG');
       }, 2000);
+      textTimeout = setTimeout(() => {
+        setTextContent(["LEARN", "'INFINITY BULKING'"]);
+        setTextAnimation('slide-right'); // Trigger sliding animation
+      }, 2000);
     }
-    return () => clearTimeout(timeout); // Clear the timeout if the component unmounts
+    return () => {
+      clearTimeout(imageTimeout);
+      clearTimeout(textTimeout);
+    };
   }, [isVisible]);
 
   return (
-    <div className="container mx-auto my-4 flex flex-col md:flex-row justify-center items-center banner-description">
-      {/* Image Container with Negative Margin */}
-      <div className={`flex justify-center items-center w-full md:w-1/2 md:-mx-2 ${isVisible ? 'visible' : 'fadeInOnScroll'}`}>
+    <div className="container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 gap-2 justify-center items-center banner-description">
+      <div className={`flex justify-center items-center transition-all duration-500 ease-in-out ${isVisible ? 'visible' : 'fadeInOnScroll'}`}>
         <img
           src={imageSrc}
           alt="Transformation"
-          className=" rounded-[20px] w-[350px] max-w-full p-3 transition-all duration-500" // Added transition for smooth image change
+          className="rounded-[20px] w-[350px] max-w-full p-3 transition-opacity duration-500 ease-in-out"
+          style={{ opacity: isVisible ? 1 : 0 }} // Fade transition
         />
       </div>
 
-      {/* Text Container with Negative Margin */}
-      <div className={`flex justify-center items-center w-full md:w-1/2 md:-mx-2 ${isVisible ? 'visible' : 'fadeInOnScroll'}`}>
-        <ul className="font-semibold text-[56px] w-[350px] md:w-auto p-3 text-center">
-          <li>NO MORE</li>
-          <li className="mt-3">“BULKING AND CUTTING”</li>
+      <div className={`flex justify-center items-center transition-all duration-500 ease-in-out ${isVisible ? 'visible' : 'fadeInOnScroll'}`}>
+        <ul className={`font-semibold text-[56px] p-3 text-center transition-transform duration-500 ${textAnimation}`}>
+          <li>{textContent[0]}</li>
+          <li className="mt-3">{textContent[1]}</li>
         </ul>
       </div>
     </div>
@@ -74,29 +79,56 @@ export default BannerDescription;
 
 
 
-
-
-
-
-// import React from 'react';
+// import React, { useState, useEffect } from 'react';
 
 // const BannerDescription = () => {
+//   const [isVisible, setIsVisible] = useState(false);
+//   const [imageSrc, setImageSrc] = useState('/before-pic.jpeg');
+//   const [textContent, setTextContent] = useState(["NO MORE", "“BULKING AND CUTTING”"]);
+
+//   const checkScroll = () => {
+//     const element = document.querySelector('.banner-description');
+//     if (element) {
+//       const elementPosition = element.getBoundingClientRect().top;
+//       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+//       const visible = elementPosition < viewportHeight / 2;
+//       setIsVisible(visible);
+//     }
+//   };
+
+//   useEffect(() => {
+//     window.addEventListener('scroll', checkScroll);
+//     checkScroll();
+//     return () => {
+//       window.removeEventListener('scroll', checkScroll);
+//     };
+//   }, []);
+
+//   useEffect(() => {
+//     let timeout;
+//     if (isVisible) {
+//       timeout = setTimeout(() => {
+//         setImageSrc('/after-pic.JPG');
+//         setTextContent(["LEARN", "'INFINITY BULKING'"]);
+//       }, 2000);
+//     }
+//     return () => clearTimeout(timeout);
+//   }, [isVisible]);
+
 //   return (
-//     <div className="container mx-auto my-4 flex flex-col md:flex-row justify-center items-center">
-//       {/* Image Container with Negative Margin */}
-//       <div className="flex justify-center items-center w-full md:w-1/2 md:-mx-2 ">
+//     <div className="container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center banner-description">
+//       <div className={`flex justify-center items-center transition-all duration-500 ${isVisible ? 'visible' : 'fadeInOnScroll'}`}>
 //         <img
-//           src="/fillout.jpeg"
-//           alt="Fillout"
-//           className="w-[350px] max-w-full p-3"
+//           src={imageSrc}
+//           alt="Transformation"
+//           className="rounded-[20px] w-[350px] max-w-full p-3"
 //         />
 //       </div>
 
-//       {/* Text Container with Negative Margin */}
-//       <div className="flex justify-center items-center w-full md:w-1/2 md:-mx-2 ">
-//         <ul className="font-semibold text-[56px] w-[350px] md:w-auto p-3 text-center">
-//           <li>NO MORE</li>
-//           <li className="mt-3">“BULKING AND CUTTING”</li>
+//       <div className={`flex justify-center items-center transition-all duration-500 ${isVisible ? 'visible' : 'fadeInOnScroll'}`}>
+//         <ul className="font-semibold text-[56px] p-3 text-center">
+//           <li>{textContent[0]}</li>
+//           <li className="mt-3">{textContent[1]}</li>
 //         </ul>
 //       </div>
 //     </div>
@@ -104,3 +136,7 @@ export default BannerDescription;
 // };
 
 // export default BannerDescription;
+
+
+
+

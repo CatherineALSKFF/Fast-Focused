@@ -4,17 +4,32 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './globals.css';
+import { useEffect } from 'react';
 
 export default function Layout({ children }) {
   const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
   const enableGA = process.env.NEXT_PUBLIC_ENABLE_GA === 'true';
-  const tiktokPixelId= process.env.TIKTOK_PIXELS_ID
+  const tiktokPixelId = process.env.TIKTOK_PIXELS_ID
+
+
+
+
+
 
   return (
     <html lang="en">
       <head>
         <title>Fasting Focused</title>
         <link rel="icon" href="/logo.png" type="image/x-icon" sizes="16x16" />
+
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Jost:wght@700&display=swap" rel="stylesheet" />
+
+
+
 
         {/* Conditional Google Analytics */}
         {enableGA && googleAnalyticsId && (
@@ -55,6 +70,10 @@ export default function Layout({ children }) {
             }}
           />
         )}
+
+
+
+
       </head>
 
 

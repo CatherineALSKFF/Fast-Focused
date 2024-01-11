@@ -6,6 +6,8 @@ import axios from 'axios'
 
 
 import { useUser } from '@auth0/nextjs-auth0/client';
+import CryptoJS from 'crypto-js';
+import useSendMetaEvent from '@/hooks/useSendMetaEvents';
             
 
 const Navbar = () => {
@@ -39,7 +41,8 @@ const Navbar = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-
+// Use the custom hook
+const { sendMetaEvent, hashData } = useSendMetaEvent();
 
 
 
@@ -72,12 +75,9 @@ const Navbar = () => {
 
 
 
-  
-
-
-
   // LOGIN BTN
-  const handleJoinNowClick = () => {
+  const handleJoinNowClick = async () => {
+    // tiktok code
     if (window.ttq) {
       window.ttq.track('ClickButton', {
         contents: [{
@@ -89,14 +89,68 @@ const Navbar = () => {
         currency: "USD" // or relevant currency
       });
     }
-  console.log(user)
+ 
+
+
+
+       // Meta event for Complete Registration
+    const hashedEmail = user?.email ? hashData(user.email) : "";
+    const hashedFirstName = user?.firstName ? hashData(user.firstName) : "";
+    const metaEventData = {
+      event_name: "CompleteRegistration",
+      event_time: Math.floor(Date.now() / 1000),
+      action_source: "website",
+      event_source_url: window.location.href,
+      user_data: {
+        em: [hashedEmail],
+        fn: [hashedFirstName]
+      }
+         // Additional parameters as needed
+       };
+   
+       await sendMetaEvent(metaEventData);
+   
+
+
+ 
+
     // Redirect to login page logic here (if not using Link component)
   };
 
 
 
+
+
+
+
+  // // Hashing Function
+  // const hashData = (data) => {
+  //   return CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex);
+  // };
+
+  // // Function to Send Meta Event
+  // const sendMetaEvent = async (metaEventData) => {
+  //   const apiUrl = `https://graph.facebook.com/v14.0/${process.env.NEXT_PUBLIC_META_PIXELS_ID}/events?access_token=${process.env.NEXT_PUBLIC_META_PIXELS_ACCESS_TOKEN}`;
+
+  //   try {
+  //     const payload = {
+  //       data: [metaEventData]
+  //     };
+
+  //     const response = await axios.post(apiUrl, payload, {
+  //       headers: { 'Content-Type': 'application/json' }
+  //     });
+  //     console.log('Meta event sent successfully:', response.data);
+  //   } catch (error) {
+  //     console.error('Error sending Meta event:', error);
+  //   }
+  // };
+
+
+
+
   
-  const handleLearnMoreClick = () => {
+  const handleLearnMoreClick = async () => {
     if (window.ttq) {
       window.ttq.track('ClickButton', {
         contents: [{
@@ -108,9 +162,29 @@ const Navbar = () => {
         currency: "USD" // or relevant currency
       });
     }
-  
-    // Redirect to programs page logic here (if not using Link component)
+
+
+
+
+   // Meta event for View Content
+   const hashedEmail = user?.email ? hashData(user.email) : "";
+   const hashedFirstName = user?.firstName ? hashData(user.firstName) : "";
+   const viewContentEventData = {
+     event_name: "ViewContent",
+     event_time: Math.floor(Date.now() / 1000),
+     action_source: "website",
+     event_source_url: window.location.href,
+     user_data: {
+       em: [hashedEmail],
+       fn: [hashedFirstName]
+     },
+      // Additional custom data if needed
+    };
+
+    await sendMetaEvent(viewContentEventData);
+    // Redirect logic...
   };
+
 
 
 
@@ -124,7 +198,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="bg-[#444646] ">
+    <nav className="bg-[#444646] inter-font ">
       <div className="container mx-auto py-4">
         <div className="flex justify-between">
           <div className="flex items-center">
@@ -150,7 +224,7 @@ const Navbar = () => {
               />
             </svg>
           ) : (
-            <ul className="flex justify-end px-4 my-3 font-bold gap-3">
+            <ul className="flex justify-end px-4 my-3 font-bold gap-3 ">
               <li className="mx-2">
                 <Link className="text-white hover:text-gray-300" href="/about">
                   ABOUT
@@ -187,12 +261,19 @@ const Navbar = () => {
                 </li></>
 )
 :
-               ( <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
-                  <Link className=" hover:text-gray-300  " href="/api/auth/login" onClick={handleJoinNowClick}>
-                    JOIN NOW
-                  </Link>
-                </li>)}
-             
+                (
+                   <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
+                      <Link className=" hover:text-gray-300  " href="/api/auth/login" onClick={handleJoinNowClick}>
+                        JOIN NOW
+                      </Link>
+                    </li>
+
+                    
+
+
+
+                )}
+
             </ul>
           )}
 
@@ -238,11 +319,19 @@ const Navbar = () => {
                 </li></>
 )
 :
-               ( <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
-                  <Link className=" hover:text-gray-300  " href="/api/auth/login" onClick={handleJoinNowClick}>
-                    JOIN NOW
-                  </Link>
-                </li>)}
+               ( 
+
+                   <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
+                      <Link className=" hover:text-gray-300  " href="/api/auth/login" onClick={handleJoinNowClick}>
+                        JOIN NOW
+                      </Link>
+                    </li>
+
+                  
+
+
+
+                )}
 
               
             </ul>

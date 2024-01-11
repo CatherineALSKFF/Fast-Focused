@@ -7,7 +7,7 @@ const Banner = () => {
   const getTitle = (path) => {
     switch (path) {
       case '/programs':
-        return 'PROGRAMS';
+        return 'JOIN OUR EXCLUSIVE PROGRAMS';
       case '/contact':
         return 'CONTACT';
       case '/about':

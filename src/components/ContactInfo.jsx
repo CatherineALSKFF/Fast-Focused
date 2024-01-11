@@ -9,11 +9,13 @@ const ContactInfo = () => {
     if (element) {
       const elementPosition = element.getBoundingClientRect().top;
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-      const visible = elementPosition < viewportHeight / 2;
+  
+      // Change the threshold here
+      const visible = elementPosition < viewportHeight * 3 / 4; // 75% of the viewport height
       setIsVisible(visible);
     }
   };
+  
 
   useEffect(() => {
     window.addEventListener('scroll', checkScroll);
@@ -29,16 +31,7 @@ const ContactInfo = () => {
         <div className='relative'>
           <Link href="https://www.instagram.com/ChristianEverdeen" className='hover-trigger'>
             <img src="/insta-contact.png" className='rounded-[30px] w-[300px] h-[300px] object-cover cursor-pointer' alt="Instagram" />
-            {/* <span className="hover-tooltip">@ChristianEverdeen</span> */}
-            {/* <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-0 left-0 h-7 w-7 text-[#D9D9D9] mt-3 ml-3"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            style={{ marginTop: '-1rem', marginLeft: '-1rem' }}
-          >
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 ... (rest of the path data)" />
-          </svg> */}
+           
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="hover-tooltip absolute top-0 left-0 h-9 w-9 text-[#D9D9D9] mt-3 ml-3"
