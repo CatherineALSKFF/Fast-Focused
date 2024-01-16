@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Banner from "@/components/Banner"
 import ProgDescription from "@/components/ProgDescription"
 import ProgListings from "@/components/ProgListings"
+import ProgramsDetails from "@/components/ProgramsDetails"
 
 
 export default function Programs() {
@@ -31,6 +32,8 @@ export default function Programs() {
       </div>
 
       <ProgDescription />
+      <ProgramsDetails/>
+
 
 
     </main>

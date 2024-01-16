@@ -19,8 +19,27 @@ export default function Layout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>Fasting Focused</title>
+        <title>Fasting Focused - Personalized Intermittent Fasting Training | Change Your Life </title>
         <link rel="icon" href="/logo.png" type="image/x-icon" sizes="16x16" />
+        <meta
+          name="description"
+          content="Join Fasting Focused for expert-led intermittent fasting training programs. Personalize your fitness journey with our unique fasting and workout plans. Start transforming your life today!"
+        />
+        {/* Additional meta tags */}
+        {/* Schema Markup */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "http://schema.org",
+              "@type": "HealthAndBeautyBusiness",
+              "name": "Fasting Focused",
+              "description": "Personalized intermittent fasting and fitness training",
+              // Other relevant schema properties
+            }),
+          }}
+        />
+        
 
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -32,7 +32,7 @@ const BannerDescription = () => {
         setImageSrc('/after-pic.JPG');
       }, 2000);
       textTimeout = setTimeout(() => {
-        setTextContent(["LEARN", "'INFINITY BULKING'"]);
+        setTextContent(["LEARN", "“INFINITY BULKING”"]);
         setTextAnimation('slide-right'); // Trigger sliding animation
       }, 2000);
     }
