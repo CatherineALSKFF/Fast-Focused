@@ -45,12 +45,11 @@ const Navbar = () => {
 const { sendMetaEvent, hashData } = useSendMetaEvent();
 
 
-
   // POST request 
   const handleBillingPortalRedirect = async () => {
     
     try {
-      const { data } = await axios.post('api/create-customer-portal-session',
+      const { data } = await axios.post('api/create-customer-portal-session',{},
       {
         headers: {
           'Content-Type': 'application/json',
