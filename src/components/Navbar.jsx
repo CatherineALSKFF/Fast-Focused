@@ -254,17 +254,17 @@ const { sendMetaEvent, hashData } = useSendMetaEvent();
 
 
                     <li className="mx-2">
-                      <Link className="text-white hover:text-gray-300" href="/api/auth/logout">
+                      <a className="text-white hover:text-gray-300" href="/api/auth/logout">
                     LOGOUT
-                  </Link>
+                  </a>
                 </li></>
 )
 :
                 (
                    <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
-                      <Link className=" hover:text-gray-300  " href="/api/auth/login" onClick={handleJoinNowClick}>
+                      <a className=" hover:text-gray-300  " href="/api/auth/login?returnTo=/programs" onClick={handleJoinNowClick}>
                         JOIN NOW
-                      </Link>
+                      </a>
                     </li>
 
                     
@@ -312,18 +312,18 @@ const { sendMetaEvent, hashData } = useSendMetaEvent();
 
 
                     <li className="mx-2">
-                      <Link className="text-white hover:text-gray-300" href="/api/auth/logout">
+                      <a className="text-white hover:text-gray-300" href="/api/auth/logout">
                     LOGOUT
-                  </Link>
+                  </a>
                 </li></>
 )
 :
                ( 
 
                    <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
-                      <Link className=" hover:text-gray-300  " href="/api/auth/login" onClick={handleJoinNowClick}>
+                      <a className=" hover:text-gray-300  " href="/api/auth/login?returnTo=/programs" onClick={handleJoinNowClick}>
                         JOIN NOW
-                      </Link>
+                      </a>
                     </li>
 
                   
