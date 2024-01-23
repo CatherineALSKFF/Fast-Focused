@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './globals.css';
 import { useEffect } from 'react';
+import TawkToWidget from '@/components/TawkToWidget';
 
 export default function Layout({ children }) {
   const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
@@ -102,6 +103,7 @@ export default function Layout({ children }) {
           <Navbar />
           {children}
           <Footer />
+          <TawkToWidget />
         </UserProvider>
       </body>
     </html>
