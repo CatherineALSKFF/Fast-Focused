@@ -27,22 +27,43 @@ const ProgramsDetails = () => {
     )
 
     const standardPhrases = [
-        <div className="flex items-center"><WhatsAppIcon /><span> Initial consult call and instant initiation</span></div>,
-        <div className="flex items-center"><MealIcon /><span> Versatile meal plan – which guides, not limits! </span></div>,
-        <div className="flex items-center"><WorkoutIcon /><span> Customized training program (workaround injury) </span></div>,
+        <>
+            <div className="flex justify-center pb-6"><WhatsAppIcon /></div>
+            <span> Initial consult call and instant initiation</span>
+        </>,
+        <>
+            <div className="flex justify-center pb-6"><MealIcon /></div>
+            <span> Versatile meal plan – which guides, not limits! </span>
+        </>,
+        <>
+            <div className="flex justify-center pb-6"><WorkoutIcon /></div>
+            <span> Customized training program (workaround injury) </span>
+        </>,
         "Monthly alterations to program based on progress made",
-
     ];
-
+    
     const comprehensivePhrases = [
-        <div className="flex items-center "><WhatsAppIcon /><span> 1 on 1 coaching with me as your personal trainer</span></div>,
-        <div className="flex items-center"><MealIcon /><span> Fluid customized versatile meal plan (focus on health) </span></div>,
-        <div className="flex items-center"><WorkoutIcon /><span> Fluid customized training program (always in motion for best result) </span></div>,
-
+        <>
+            <div className="flex justify-center pb-6"><WhatsAppIcon /></div>
+            <span> 1 on 1 coaching with me as your personal trainer</span>
+        </>,
+        <>
+            <div className="flex justify-center pb-6"><MealIcon /></div>
+            <span> Fluid customized versatile meal plan (focus on health) </span>
+        </>,
+        <>
+            <div className="flex justify-center pb-6"><WorkoutIcon /></div>
+            <span> Fluid customized training program (always in motion for best result) </span>
+        </>,
         "(whatsapp) Weekly video consult keeping you accountable! ",
         "Focus on your knowledge of the Fasting Focused method moving forward",
-        "Train along side me if visiting the UAE!"
+        <>
+            <div className="flex justify-center pb-6 ">🇦🇪</div>
+            <span> Train along side me if visiting the UAE! </span>
+        </>,
+      
     ];
+    
 
     const toggleTitle = () => {
         setIsStandard(!isStandard);
@@ -92,13 +113,14 @@ const ProgramsDetails = () => {
 
 
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center'>
-                {dynamicDescription.map((phrase, index) => (
-                    <div key={index} className='bg-[#5C5E5E] w-[250px] h-[250px] flex items-center justify-center m-6 rounded-[30px] text-[#D3FCDE] text-center p-4 shadow-lg transform hover:scale-110 hover-programs-desc'>
-                        <span className={animatePhrases ? 'fadeInPrograms' : ''}>
-                            {phrase}
-                        </span>
-                    </div>
-                ))}
+            {dynamicDescription.map((phrase, index) => (
+    <div key={index} className='bg-[#5C5E5E] w-[250px] h-[250px] flex flex-col items-center justify-center m-6 rounded-[30px] text-[#D3FCDE] text-center p-4 shadow-lg transform hover:scale-110 hover-programs-desc'>
+        <span className={animatePhrases ? 'fadeInPrograms' : ''}>
+            {typeof phrase === 'string' ? phrase : phrase}
+        </span>
+    </div>
+))}
+
             </div>
         </div>
     );
