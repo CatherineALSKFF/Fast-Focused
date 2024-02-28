@@ -35,7 +35,7 @@ const ProgramsDetails = () => {
     ];
 
     const comprehensivePhrases = [
-        <div className="flex items-center"><WhatsAppIcon /><span> 1 on 1 coaching with me as your personal trainer</span></div>,
+        <div className="flex items-center "><WhatsAppIcon /><span> 1 on 1 coaching with me as your personal trainer</span></div>,
         <div className="flex items-center"><MealIcon /><span> Fluid customized versatile meal plan (focus on health) </span></div>,
         <div className="flex items-center"><WorkoutIcon /><span> Fluid customized training program (always in motion for best result) </span></div>,
 

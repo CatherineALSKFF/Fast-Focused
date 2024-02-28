@@ -19,6 +19,9 @@ export default function Programs() {
     const { data } = await axios.get('/api/getprograms')
     setPrices(data)
     // console.log(data)
+      // Assuming data is an array of prices
+      const sortedData = data.sort((a, b) => a.unit_amount - b.unit_amount);
+      setPrices(sortedData)
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
