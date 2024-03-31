@@ -17,6 +17,9 @@
   }
 }
 
+.player{
+  border-radius: 30px;
+}
 
 body {
   /* background: linear-gradient(180deg, rgba(223, 253, 255, 0.58) 9.38%, rgba(92, 94, 94, 0.97) 58.85%); */

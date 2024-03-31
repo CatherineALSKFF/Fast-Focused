@@ -31,6 +31,7 @@ const ProgListings = ({ price }) => {
     } else {
       return (
         <div className="text-[#B7B7B7] font-bold text-center font-semibold">
+          <span></span>
           {["1 on 1 coaching with me", "Fluid customized program tailored to you specifically", "Fluid customized meal plan", "Daily consulting via <span style='color:#C2FFD3;'>WhatsApp</span> to follow progress/make alterations"].map((item, index) => (
             <h2 key={index} className='text-sm sm:text-m text-light mt-3' dangerouslySetInnerHTML={{ __html: item.replace('WhatsApp', `<span style="color: #C2FFD3;">WhatsApp</span>`) }}></h2>
           ))}
@@ -143,6 +144,7 @@ const ProgListings = ({ price }) => {
   return (
     <div className={`w-full sm:w-1/2 mt-3 mx-3 text-center flex flex-col justify-center items-center py-4 px-4 text-[16px] sm:text-[20px] max-w-[400px] border-[#C2FFD3] rounded-[30px] h-auto sm:h-[400px] shadow-lg bg-[#2A2A2B] ${DynamicColorClass(price)}`}>
       <h1 className="text-center text-white font-extrabold mb-3 text-[25px] sm:text-[35px] ">{price.nickname}</h1>
+      {price.nickname=== 'Comprehensive' && (<span className='text-[#C2FFD3] italic  '>8 spots left!</span>)}
       {DynamicDescription(price)}
       <div className="mt-3 price-button-container text-center">
       {displayPriceWithDiscount(price)}
