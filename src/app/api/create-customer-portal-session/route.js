@@ -31,7 +31,7 @@ export async function POST(request) {
         // Use the customer ID to create a billing portal session
         const session = await stripe.billingPortal.sessions.create({
             customer: customerId,
-            return_url: 'http://localhost:3000',
+            return_url: 'https://fastingfocused.com',
         });
     
         return new Response(JSON.stringify({ url: session.url }), {
