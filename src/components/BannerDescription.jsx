@@ -53,8 +53,8 @@ const BannerDescription = () => {
         />
       </div>
 
-      <div className={`flex justify-center items-center transition-all duration-500 ease-in-out ${isVisible ? 'visible' : 'fadeInOnScroll'}`}>
-        <ul className={`font-semibold text-[56px] p-3 text-center transition-transform duration-500 ${textAnimation}`}>
+      <div className={`flex justify-center items-center transition-all duration-500 ease-in-out ${isVisible ? 'visible' : 'fadeInOnScroll'} text-[#CCC]`}>
+        <ul className={`font-semibold text-[56px] p-3 text-center transition-transform duration-500 ${textAnimation} text-[#CCC]`}>
           <li>{textContent[0]}</li>
           <li className="mt-3">{textContent[1]}</li>
         </ul>

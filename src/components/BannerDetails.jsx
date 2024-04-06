@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const BannerDetails = () => {
   const [fontSize, setFontSize] = useState(20); // Start with a smaller font size for mobile
@@ -56,16 +57,16 @@ const BannerDetails = () => {
     <div className="text-center my-5 py-4 px-5 description-section">
       {/* ... existing content ... */}
       <Link href='/programs'>
-         <button type="button" className="inter-font btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold py-2 px-4 rounded-[30px] sm:px-10 ">
-           JOIN NOW
-         </button>
-       </Link>
+        <button type="button" className="inter-font btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold py-2 px-4 rounded-[30px] sm:px-10 ">
+          JOIN NOW
+        </button>
+      </Link>
 
-       {/* innovative fitness training," "effective workout plans," or "personalized fitness guidance." */}
-       <div className="my-4 mt-[100px] sm:mt-[200px] mb-[150px] sm:mb-[300px] px-4 py-4 description-texts">
-         <p className="mb-4 font-extrabold text-[20px] sm:text-[40px]">LEARN THE UNKNOWN METHOD TO GET</p>
+      {/* innovative fitness training," "effective workout plans," or "personalized fitness guidance." */}
+      <div className="my-4 mt-[100px] sm:mt-[200px] mb-[150px] sm:mb-[300px] px-4 py-4 description-texts">
+         <p className="mb-4 font-extrabold text-[20px] sm:text-[40px] text-[#CCC]">LEARN THE UNKNOWN METHOD TO GET</p>
          <p className="mb-4 font-extrabold text-[#C2FFD3]" style={{ fontSize: `${fontSize}px`,  }}>LEAN, STRONG AND BIG</p>
-         <p className="mb-4 font-extrabold text-[20px] sm:text-[40px]">DRUG-FREE!</p>
+         <p className="mb-4 font-extrabold text-[20px] sm:text-[40px] text-[#CCC]">DRUG-FREE!</p>
 </div>
 
 

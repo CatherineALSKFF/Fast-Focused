@@ -91,7 +91,7 @@ const BannerVideo = () => {
           onClick={() => setIsModalOpen(false)}> {/* Close modal when overlay is clicked */}
 
           <iframe
-            src="https://player.vimeo.com/video/929158930?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1&loop=1&controls=0" // Replace with your video ID
+            src="https://player.vimeo.com/video/929158930?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;controls=0" // Replace with your video ID
             frameBorder="0"
             allow="autoplay; fullscreen"
             style={{
