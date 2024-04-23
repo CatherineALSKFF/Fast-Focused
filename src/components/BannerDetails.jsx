@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Form from './Form';
 
 const BannerDetails = () => {
   const [fontSize, setFontSize] = useState(20); // Start with a smaller font size for mobile
@@ -69,7 +70,7 @@ const BannerDetails = () => {
          <p className="mb-4 font-extrabold text-[20px] sm:text-[40px] text-[#CCC]">DRUG-FREE!</p>
 </div>
 
-
+<Form/>
       
       {/* ANOTHER SECTION */}
       <div className={`text-[#CCC] pt-[200px] my-4 mt-[100px] sm:mt-[200px] mb-[150px] sm:mb-[300px] px-4 py-4 description-texts second-section ${isAnotherSectionVisible ? 'visible' : 'fadeInOnScroll'}`}>

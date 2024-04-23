@@ -9,7 +9,6 @@ import useSendMetaEvent from '@/hooks/useSendMetaEvents';
 const ProgListings = ({ price }) => {
   const { sendMetaEvent, hashData } = useSendMetaEvent();
   const { user, error, isLoading } = useUser();
-
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
@@ -53,74 +52,154 @@ const ProgListings = ({ price }) => {
 
 
 
+
+
+
   const handleSubscription = async (e) => {
     e.preventDefault();
   
     // Check if user is logged in and has an email
-    if (user && user.email) {
-          // User is logged in and has an email
-      // Prepare event data for InitiateCheckout
-      const metaEventData = {
-        event_name: "InitiateCheckout",
-        event_time: Math.floor(Date.now() / 1000),
-        action_source: "website",
-        event_source_url: window.location.href,
-        user_data: {
-          em: [hashData(user.email)], // Hashed email
-          fn: [user.firstName ? hashData(user.firstName) : ""] // Hashed first name (optional)
-        }
-        // Add any additional data as needed
-      };
-
-      await sendMetaEvent(metaEventData);
-
-      // Existing TikTok and payment processing logic
-      // Trigger the TikTok Pixel event for InitiateCheckout
-      if (window.ttq) {
-        window.ttq.track('InitiateCheckout', {
-          contents: [
-            {
-              content_id: price.id, // Use the price ID as content identifier
-              content_type: 'subscription', // Adjust as needed
-              content_name: price.nickname, // Program name
-              price: price.unit_amount / 100 // Convert to actual amount
-            }
-          ],
-          value: price.unit_amount / 100, // Convert to actual amount
-          currency: 'USD' // Assuming USD, adjust as needed
-        });
-      }
-  
-      try {
-        const { data } = await axios.post('/api/payment', { priceId: price.id }, { headers: { 'Content-Type': 'application/json' } });
-        window.location.assign(data);
-      } catch (error) {
-        console.error('Error handling subscription:', error);
-      }
-    } else {
-            // User is not logged in or doesn't have an email
+    if (!user || !user.email) {
+      // User is not logged in or doesn't have an email
       // Prepare event data for CompleteRegistration
       const metaEventData = {
         event_name: "CompleteRegistration",
         event_time: Math.floor(Date.now() / 1000),
         action_source: "website",
         event_source_url: window.location.href
-        // No user data needed here
       };
-
+  
       await sendMetaEvent(metaEventData);
-
-
       // Redirect to login if user is not logged in or doesn't have an email
       window.location.assign('/api/auth/login');
+      return;
+    }
+  
+    // Prepare event data for InitiateCheckout
+    const metaEventData = {
+      event_name: "InitiateCheckout",
+      event_time: Math.floor(Date.now() / 1000),
+      action_source: "website",
+      event_source_url: window.location.href,
+      user_data: {
+        em: [hashData(user.email)], // Hashed email
+        fn: [user.firstName ? hashData(user.firstName) : ""] // Hashed first name (optional)
+      }
+    };
+  
+    await sendMetaEvent(metaEventData);
+  
+    // Determine if the payment should be a one-time payment or a subscription
+    const paymentEndpoint = price.nickname === "Standard" ? '/api/onetimepayment' : '/api/payment';
+  
+    // Existing TikTok and payment processing logic
+    // Trigger the TikTok Pixel event for InitiateCheckout
+    if (window.ttq) {
+      window.ttq.track('InitiateCheckout', {
+        contents: [{
+            content_id: price.id, // Use the price ID as content identifier
+            content_type: price.nickname === "Standard" ? 'product' : 'subscription', // Adjust based on the program
+            content_name: price.nickname, // Program name
+            price: price.unit_amount / 100 // Convert to actual amount
+        }],
+        value: price.unit_amount / 100, // Convert to actual amount
+        currency: 'USD' // Assuming USD, adjust as needed
+      });
+    }
+  
+    try {
+      const response = await axios.post(paymentEndpoint, { priceId: price.id }, { headers: { 'Content-Type': 'application/json' } });
+      const paymentUrl = response.data.url;
+      if (paymentUrl) {
+        window.location.assign(paymentUrl);
+      } else {
+        throw new Error("No payment URL received");
+      }
+    } catch (error) {
+      console.error('Error handling payment:', error);
     }
   };
+  
+
+
+
+
+
+
+
+
+
+
+  // const handleSubscription = async (e) => {
+  //   e.preventDefault();
+  
+  //   // Check if user is logged in and has an email
+  //   if (user && user.email) {
+  //         // User is logged in and has an email
+  //     // Prepare event data for InitiateCheckout
+  //     const metaEventData = {
+  //       event_name: "InitiateCheckout",
+  //       event_time: Math.floor(Date.now() / 1000),
+  //       action_source: "website",
+  //       event_source_url: window.location.href,
+  //       user_data: {
+  //         em: [hashData(user.email)], // Hashed email
+  //         fn: [user.firstName ? hashData(user.firstName) : ""] // Hashed first name (optional)
+  //       }
+  //       // Add any additional data as needed
+  //     };
+
+  //     await sendMetaEvent(metaEventData);
+
+  //     // Existing TikTok and payment processing logic
+  //     // Trigger the TikTok Pixel event for InitiateCheckout
+  //     if (window.ttq) {
+  //       window.ttq.track('InitiateCheckout', {
+  //         contents: [
+  //           {
+  //             content_id: price.id, // Use the price ID as content identifier
+  //             content_type: 'subscription', // Adjust as needed
+  //             content_name: price.nickname, // Program name
+  //             price: price.unit_amount / 100 // Convert to actual amount
+  //           }
+  //         ],
+  //         value: price.unit_amount / 100, // Convert to actual amount
+  //         currency: 'USD' // Assuming USD, adjust as needed
+  //       });
+  //     }
+  
+  //     try {
+  //       const { data } = await axios.post('/api/payment', { priceId: price.id }, { headers: { 'Content-Type': 'application/json' } });
+  //       window.location.assign(data);
+  //     } catch (error) {
+  //       console.error('Error handling subscription:', error);
+  //     }
+  //   } else {
+  //           // User is not logged in or doesn't have an email
+  //     // Prepare event data for CompleteRegistration
+  //     const metaEventData = {
+  //       event_name: "CompleteRegistration",
+  //       event_time: Math.floor(Date.now() / 1000),
+  //       action_source: "website",
+  //       event_source_url: window.location.href
+  //       // No user data needed here
+  //     };
+
+  //     await sendMetaEvent(metaEventData);
+
+
+  //     // Redirect to login if user is not logged in or doesn't have an email
+  //     window.location.assign('/api/auth/login');
+  //   }
+  // };
 
 
 
 
 
    // Function to display the original and discounted price
+  
+  
    const displayPriceWithDiscount = (price) => {
     let originalPrice;
     if (price.nickname === "Standard") {
