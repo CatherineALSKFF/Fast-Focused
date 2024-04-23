@@ -39,7 +39,7 @@ const ProgramsDetails = () => {
             <div className="flex justify-center pb-6"><WorkoutIcon /></div>
             <span> Customized training program (workaround injury) </span>
         </>,
-        "Monthly alterations to program based on progress made",
+        "10 Weeks Program to challenge yourself and get life-changing results",
     ];
     
     const comprehensivePhrases = [
@@ -102,7 +102,7 @@ const ProgramsDetails = () => {
         <div className={`mt-[200px] mb-[80px] programs-details ${isVisible ? 'visible' : 'fadeInOnScroll'}`}>
             <div className='flex items-center justify-center text-center'>
                 <h1 className={`text-[#CCC] font-extrabold mb-0 text-[25px] sm:text-[35px] ${animateTitle ? 'fadeInPrograms' : ''}`}>
-                    {isStandard ? 'STANDARD' : 'COMPREHENSIVE'}
+                    {isStandard ? 'Fasting Focused System' : 'COMPREHENSIVE'}
                 </h1>
                 <button onClick={toggleTitle} className='ml-4 transform hover:scale-110 flex items-center'>
                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#C2FFD3">

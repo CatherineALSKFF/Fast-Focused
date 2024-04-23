@@ -22,7 +22,7 @@ const ProgListings = ({ price }) => {
       return (
         <div className="text-[#B7B7B7] font-bold text-center font-semibold ">
           {/* Repeated h2 elements are replaced by a single map for cleaner code */}
-          {["Initial consulting to gather information", "Customized meal and training program", "Full breakdown of program with exact plan of execution", "Monthly program adjustment in accordance with subscription"].map((item, index) => (
+          {["10 WEEKS TRAINING AND DIET PROGRAM  ", "FULL GUIDANCE IN UTILIZING THE FASTING FOCUSED METHOD", "TAILORED TO YOUR GOALS (WEIGHTLOSS, MUSCLEGAIN)"].map((item, index) => (
                   <h2 key={index} className='text-sm sm:text-m text-gray-500 mt-3 '>{item}</h2>
           ))}
         </div>
@@ -48,6 +48,11 @@ const ProgListings = ({ price }) => {
   const DynamicColorClass = (price) => {
     return price.nickname === "Standard" ? "standard-prog" : "comprehensive-prog";
   };
+
+  const DynamicTitle = (price) => {
+    return price.nickname === "Standard" ? "Fasting Focused System" : "Comprehensive";
+  };
+
 
 
 
@@ -203,7 +208,7 @@ const ProgListings = ({ price }) => {
    const displayPriceWithDiscount = (price) => {
     let originalPrice;
     if (price.nickname === "Standard") {
-      originalPrice = "$99";
+      originalPrice = "$55";
     } else {
       originalPrice = "$249";
     }
@@ -222,7 +227,7 @@ const ProgListings = ({ price }) => {
 
   return (
     <div className={`w-full sm:w-1/2 mt-3 mx-3 text-center flex flex-col justify-center items-center py-4 px-4 text-[16px] sm:text-[20px] max-w-[400px] border-[#C2FFD3] rounded-[30px] h-auto sm:h-[400px] shadow-lg bg-[#2A2A2B] ${DynamicColorClass(price)}`}>
-      <h1 className="text-center text-white font-extrabold mb-3 text-[25px] sm:text-[35px] ">{price.nickname}</h1>
+      <h1 className="text-center text-white font-extrabold mb-3 text-[25px] sm:text-[35px] ">{DynamicTitle(price)}</h1>
       {price.nickname=== 'Comprehensive' && (<span className='text-[#C2FFD3] italic  '>8 spots left!</span>)}
       {DynamicDescription(price)}
       <div className="mt-3 price-button-container text-center">
