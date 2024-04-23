@@ -210,15 +210,15 @@ const Navbar = () => {
 
 
                   <li className="mx-2">
-                    <a className="text-white hover:text-gray-300" href="/api/auth/logout">
+                    <a className="btn bg-[#C2FFD3]  hover:bg-[#B3F0C465] text-black font-bold  px-4  rounded-[30px] mx-3" href="/api/auth/logout">
                       LOGOUT
                     </a>
                   </li></>
               )
                 :
                 (
-                  <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
-                    <a className=" hover:text-gray-300  " href="/api/auth/login?returnTo=/programs" onClick={handleJoinNowClick}>
+                  <li className=" btn bg-[#C2FFD3] hover:bg-[#B3F0C465] text-black font-bold  px-4  rounded-[30px] mx-3 ">
+                    <a className="  " href="/api/auth/login?returnTo=/programs" onClick={handleJoinNowClick}>
                       JOIN NOW
                     </a>
                   </li>
@@ -269,7 +269,7 @@ const Navbar = () => {
 
 
                   <li className="mx-2">
-                    <a className="text-white hover:text-gray-300" href="/api/auth/logout">
+                    <a className="btn bg-[#C2FFD3]  hover:bg-[#B3F0C465] text-black font-bold  px-4  rounded-[30px] mx-3" href="/api/auth/logout">
                       LOGOUT
                     </a>
                   </li></>
@@ -277,7 +277,7 @@ const Navbar = () => {
                 :
                 (
 
-                  <li className=" btn bg-[#C2FFD3] hover:bg-[#5C5E5EA2] text-black font-bold  px-4  rounded-[30px] mx-3 ">
+                  <li className=" btn bg-[#C2FFD3]  hover:bg-[#B3F0C465] text-black font-bold  px-4  rounded-[30px] mx-3 ">
                     <a className=" hover:text-gray-300  " href="/api/auth/login?returnTo=/programs" onClick={handleJoinNowClick}>
                       JOIN NOW
                     </a>

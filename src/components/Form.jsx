@@ -101,7 +101,13 @@ const Form = () => {
     
 
     if (submitted) {
-        return <h2 className="text-center text-2xl font-bold mt-5">We received your information and we'll come back to you soon!</h2>;
+        return <div className='shadow-lg py-[100px] rounded-[20px] bg-[#B3F0C465] '>
+             <h2 className="text-center text-2xl font-bold my-5 ">We will contact you soon! </h2>
+             <p className='my-3'>Login and choose a program that will help you reach your goals</p>
+             <a className="  btn bg-[#C2FFD3]  hover:bg-[#B3F0C465] text-black font-bold  px-4  rounded-[30px] mx-3  " href="/api/auth/login?returnTo=/programs" >
+                      JOIN NOW
+                    </a>
+             </div>;
       }
     
       if (submissionError) {
@@ -222,8 +228,8 @@ const Form = () => {
 
   return (
     <div className='form-container mx-auto px-4 py-8 w-3/4 max-w-4xl'>
-      <h2 className="text-2xl font-bold mb-8 text-center">Register Now</h2>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mb-6">
+      <h2 className="text-4xl font-bold mb-12 text-center ">Register Now</h2>
+      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 my-6">
         <div className="bg-[#C2FFD3] h-2.5 rounded-full" style={{ width: `${calculateProgress()}%` }}></div>
       </div>
       {renderFormStep()}
