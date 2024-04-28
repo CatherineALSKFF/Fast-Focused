@@ -217,7 +217,7 @@ const ProgListings = ({ price }) => {
     return (
       <div className="block">
       <span className="text-gray-500 font-normal  line-through mr-2">{originalPrice}</span>
-      <span className="text-[#B7B7B7] font-bold text-white">{discountedPrice}/month</span>
+      <span className="text-[#B7B7B7] font-bold text-white">{discountedPrice}{price.nickname==="Comprehensive"&&"/month"}</span>
     </div>
     
     

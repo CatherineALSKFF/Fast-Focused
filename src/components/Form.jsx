@@ -227,7 +227,7 @@ const Form = () => {
   };
 
   return (
-    <div className='form-container mx-auto px-4 py-8 w-3/4 max-w-4xl'>
+    <div className='form-container mx-auto px-4 py-8 w-3/4 max-w-4xl text-white'>
       <h2 className="text-4xl font-bold mb-12 text-center ">Register Now</h2>
       <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 my-6">
         <div className="bg-[#C2FFD3] h-2.5 rounded-full" style={{ width: `${calculateProgress()}%` }}></div>
@@ -244,7 +244,9 @@ const Form = () => {
     Next
   </button>
 )}
-{step ===6 && <button onClick={handleSubmit} className={`btn font-bold py-2 px-4 rounded-[30px] w-1/4 text-black ${canProceed ? 'bg-[#C2FFD3] hover:bg-[#B3F0C465]' : 'bg-[#B3F0C465]'}`} disabled={!canProceed}>
+{step ===6 && <button onClick={handleSubmit} 
+className={`btn text-center  font-bold py-2  rounded-[30px] w-1/4 text-black ${canProceed ? 'bg-[#C2FFD3] hover:bg-[#B3F0C465]' : 'bg-[#B3F0C465]'}`}
+ disabled={!canProceed}>
         Submit
       </button>}
       </div>
